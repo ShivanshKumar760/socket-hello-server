@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello From Pod</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; }
+    #log { list-style: none; padding: 0; }
+    #log li { padding: 8px; border-bottom: 1px solid #eee; }
+    .pod { font-weight: bold; color: #2563eb; }
+  </style>
+</head>
+<body>
+  <h1>Hello From Pod</h1>
+  <p>Connected to: <code id="status">connecting…</code></p>
+  <ul id="log"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const log = document.getElementById('log');
+    const status = document.getElementById('status');
+
+    socket.on('connect', () => {
+      status.textContent = 'connected (socket id: ' + socket.id + ')';
+    });
+
+    socket.on('hello', (data) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="pod">${data.pod}</span> says hello — ${new Date(data.time).toLocaleTimeString()}`;
+      log.prepend(li);
+    });
+
+    socket.on('disconnect', () => {
+      status.textContent = 'disconnected';
+    });
+  </script>
+</body>
+</html>
