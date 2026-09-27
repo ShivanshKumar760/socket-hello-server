@@ -42,10 +42,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: my-org/gitops
-          token: ${{ secrets.DEPLOY_REPO_TOKEN }}   # from Section 12
+          repository: ShivanshKumar760/gitops
+          token: ${{ secrets.DEPLOY_REPO_TOKEN }}
           path: deploy
-
+          
       - uses: imranismail/setup-kustomize@v2
 
       - name: Bump image tag
