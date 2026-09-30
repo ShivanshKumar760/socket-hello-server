@@ -70,4 +70,4 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => clearInterval(interval));
 });
 
-server.listen(PORT, () => console.log(`[${POD_NAME}] listening on ${PORT}`));
+server.listen(PORT, () => console.log(`[${POD_NAME}] listening on ${PORT} start exploring`));
